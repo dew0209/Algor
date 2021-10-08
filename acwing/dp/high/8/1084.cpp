@@ -9,8 +9,6 @@
 
 using namespace std;
 
-typedef long long LL;
-
 #define pb  push_back
 #define fi first
 #define se second
@@ -20,7 +18,7 @@ typedef long long LL;
 #define mfx(h) memset(h,-1,sizeof h);
 #define mf1(h) memset(h,0,sizeof h);
 #define mf2(h) memset(h,0x3f,sizeof h);
-#define mf3(h) memset(h,-ox3f,sizeof h);
+#define mf3(h) memset(h,-0x3f,sizeof h);
 #define ALL(a) a.begin(),a.end()
 
 using namespace std;
@@ -72,7 +70,6 @@ int main(){
         init();
         printf("%d\n",solve(m) - solve(n - 1));
     }
-
 
     return 0;
 }

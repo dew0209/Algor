@@ -53,13 +53,8 @@ int main(){
     f[0] = 0;
     int hh = 0,tt = 0;
     rep1(i,1,n + 1){
-        int l = hh,r = tt;
-        while(l < r){
-            int mid = l + r >> 1;
-            if (f[q[mid + 1]] - f[q[mid]] > (t[i] + s) * (c[q[mid + 1]] - c[q[mid]])) r = mid;
-            else l = mid + 1;
-        }
-        int j = q[r];
+        while (hh < tt && (f[q[hh + 1]] - f[q[hh]]) <= (t[i] + s) * (c[q[hh + 1]] - c[q[hh]]))hh++;
+        int j = q[hh];
         f[i] = f[j] - (t[i] + s) * c[j] + t[i] * c[i] + s * c[n];
         while (hh < tt && (f[q[tt]] - f[q[tt - 1]]) * (c[i] - c[q[tt - 1]]) >= (f[i] - f[q[tt - 1]]) * (c[q[tt]] - c[q[tt - 1]]))tt--;
         q[++tt] = i;

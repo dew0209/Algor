@@ -33,39 +33,28 @@ typedef pair<double,double> PDD;
 
 template <class T> T mod(T a,T b){return (a % b + b) % b;}
 
-const int N = 300010,M = N * 2,K = 110;
+const int N = 5010,M = N * 2,K = 110;
 const int MOD18 = 1e8,INF = 0x3f3f3f3f,MOD = 998244353;
 const double eps = 1e-8;
 
 int n,s;
-LL c[N],t[N];
+LL sc[N],st[N];
 LL f[N];
-int q[N];
 
 int main(){
     scanf("%d%d",&n,&s);
     rep1(i,1,n + 1){
-        scanf("%lld%lld",&t[i],&c[i]);
-        t[i] += t[i - 1];
-        c[i] += c[i - 1];
+        scanf("%lld%lld",&st[i],&sc[i]);
+        st[i] += st[i - 1];
+        sc[i] += sc[i - 1];
     }
     mf2(f);
     f[0] = 0;
-    int hh = 0,tt = 0;
     rep1(i,1,n + 1){
-        int l = hh,r = tt;
-        while(l < r){
-            int mid = l + r >> 1;
-            if (f[q[mid + 1]] - f[q[mid]] > (t[i] + s) * (c[q[mid + 1]] - c[q[mid]])) r = mid;
-            else l = mid + 1;
+        rep1(j,0,i){
+            f[i] = min(f[i],f[j] + (sc[i] - sc[j]) * st[i] + s * (sc[n] - sc[j]));
         }
-        int j = q[r];
-        f[i] = f[j] - (t[i] + s) * c[j] + t[i] * c[i] + s * c[n];
-        while (hh < tt && (f[q[tt]] - f[q[tt - 1]]) * (c[i] - c[q[tt - 1]]) >= (f[i] - f[q[tt - 1]]) * (c[q[tt]] - c[q[tt - 1]]))tt--;
-        q[++tt] = i;
     }
-
-
     printf("%lld\n",f[n]);
     return 0;
 }

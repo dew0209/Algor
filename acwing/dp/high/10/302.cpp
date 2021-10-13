@@ -61,7 +61,7 @@ int main(){
         }
         int j = q[r];
         f[i] = f[j] - (t[i] + s) * c[j] + t[i] * c[i] + s * c[n];
-        while (hh < tt && (f[q[tt]] - f[q[tt - 1]]) * (c[i] - c[q[tt - 1]]) >= (f[i] - f[q[tt - 1]]) * (c[q[tt]] - c[q[tt - 1]]))tt--;
+        while (hh < tt && (double)(f[q[tt]] - f[q[tt - 1]]) * (c[i] - c[q[tt - 1]]) >= (double)(f[i] - f[q[tt - 1]]) * (c[q[tt]] - c[q[tt - 1]]))tt--;
         q[++tt] = i;
     }
 

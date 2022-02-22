@@ -1,4 +1,10 @@
-//
-// Created by 吕露的小可爱 on 2021/9/20.
-//
+#include <iostream>
+#include <cstring>
+#include <cmath>
+using namespace std;
 
+int main(){
+    cout << "测试" << endl;
+    cout << "啦啦啦" << endl;
+    return 0;
+}

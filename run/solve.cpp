@@ -15,24 +15,7 @@ int cnt[N];
 
 int main(){
     cin >> n >> m;
-    int len = 0;
-    while (n){
-        a[len++] = n % 10;
-        n /= 10;
-    }
-    LL maxv = 0;
-    sort(a,a + len - 1);
-    while (next_permutation(a,a + len - 1)){
-        LL res = 0;
-        for(int i = 0;i < len;i++){
-            res = res * 10 + a[i];
-        }
-        if (res <= m){
-            maxv = max(res,maxv);
-        }
-    }
-
-    cout << maxv << endl;
-
+    cout << "hello" << endl;
+    cout << n << "---" << m << endl;
     return 0;
 }

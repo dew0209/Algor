@@ -23,18 +23,14 @@ void solve(){
     //偶数 + 偶数 = 偶数
     
     //如果奇数是奇数个（和为奇数)
-    //方法一：
-//    for(int i = 1;i <= odd && i <= m;i += 2){
-//         if(m - i <= even){
-//             cout << "Yes" << endl;
-//             return;
-//         }
-//     }
-    //方法二：
-    //1
-    int maxV = m - 1;
-    int minV = m - (m % 2 == 1 ? m : (m - 1));
-    if(minV < even || maxV < even)cout << "Yes" << endl;
+    bool ok = 0;
+    for(int i = 1;i <= odd && i <= m;i += 2){
+        if(m - i <= even){
+            ok = 1;
+            break;
+        }
+    }
+    if(ok)cout << "Yes" << endl;
     else cout << "No" << endl;
 }
 

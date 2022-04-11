@@ -1,3 +1,4 @@
+//https://codeforces.com/problemset/problem/474/B   暴力模拟
 #include <iostream>
 #include <algorithm>
 
@@ -6,7 +7,7 @@ using namespace std;
 const int N = 1000010;
 
 int n,m;
-int a[10010],b[10010];
+int a[N],b[N];
 int ans[N];
 int cnt[N];
 

@@ -13,18 +13,20 @@ int n;
 map<int,int> mp;
 
 void solve(){
+    LL res = 0;
     mp.clear();
     int n;cin >> n;
     for(int i = 1;i <= n;i++){
         int c;cin >> c;
-        mp[c - i]++;
+        res += mp[c - i];
+        mp[c - i] ++;
     }
-    LL res = 0;
-    for(auto &val : mp){
-        if(val.second >= 2){
-            res += ((LL)val.second * (val.second - 1)) / 2;
-        }
-    }
+    // LL res = 0;
+    // for(auto &val : mp){
+    //     if(val.second >= 2){
+    //         res += ((LL)val.second * (val.second - 1)) / 2;
+    //     }
+    // }
     cout << res << endl;
 }
 

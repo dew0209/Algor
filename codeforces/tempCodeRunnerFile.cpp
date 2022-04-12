@@ -1,45 +1,57 @@
-//https://codeforces.com/problemset/problem/1363/A
+//https://codeforces.com/problemset/problem/1328/C
+
 #include <iostream>
 #include <cstring>
-#include <algorithm>
 
 using namespace std;
 
-const int N = 100010;
+const int N = 500010;
 
 int n,m;
+int a[N],b[N];
 
 void solve(){
-    cin >> n >> m;
-    int odd = 0,even = 0;
-    for(int i = 1;i <= n;i++){
-        int c;cin >> c;
-        if(c % 2)odd++;
-        else even++;
+    cin >> n;
+    string s;cin >> s;
+    a[0] = 1,b[0] = 1;
+    for(int i = 1;i < n;i++){
+        if(s[i] == '2'){
+            if(a[i - 1] > b[i - 1]){
+                a[i] = 0;
+                b[i] = 2;
+            }else if(a[i - 1] < b[i - 1]){
+                a[i] = 2;
+                b[i] = 0;
+            }else {
+                a[i] = 1;
+                b[i] = 1;
+            }
+        }else if(s[i] == '1'){
+            if(a[i - 1] > b[i - 1]){
+                a[i] = 0;
+                b[i] = 1;
+            }else if(a[i - 1] < b[i - 1]){
+                a[i] = 1;
+                b[i] = 0;
+            }else {
+                a[i] = 0;
+                b[i] = 1;
+            }
+        }else {
+            a[i] = 0;
+            b[i] = 0;
+        }
     }
-    //三种情况  要求结果为奇数，那么奇数 和 偶数 都要有 奇数的个数是奇数个
-    //奇数 + 奇数 = 偶数
-    //奇数 + 偶数 = 奇数
-    //偶数 + 偶数 = 偶数
-    
-    //如果奇数是奇数个（和为奇数)
-    //方法一：
-//    for(int i = 1;i <= odd && i <= m;i += 2){
-//         if(m - i <= even){
-//             cout << "Yes" << endl;
-//             return;
-//         }
-//     }
-    //方法二：
-    //1
-    int maxV = m - 1;
-    int minV = m - (m % 2 == 1 ? m : (m - 1));
-    if(minV < even || maxV < even)cout << "Yes" << endl;
-    else cout << "No" << endl;
+    for(int i = 0;i < n;i++)cout << a[i];
+    cout << endl;
+    for(int i = 0;i < n;i++)cout << b[i];
+    cout << endl;
+
 }
 
 int main(){
     int T;cin >> T;
     while(T--)solve();
+
     return 0;
 }

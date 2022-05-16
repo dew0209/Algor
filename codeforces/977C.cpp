@@ -31,15 +31,9 @@ int main(){
             break;
         }
         if(m == 0){
-            if(!cnt[g.first + 1])
-                res = g.first;
-            else res = -1;
+            res = g.first;
             break;
         }
-        if(m > 0){
-            res = g.first;
-        }
-       
     }
     cout << res << endl;
 

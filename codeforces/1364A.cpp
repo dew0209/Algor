@@ -22,7 +22,6 @@ void solve(){
     int preCnt = 1,sufCnt = 1;
     while(q[st] % m == 0 && st <= n)st++,preCnt++;
     while(q[ed] % m == 0 && ed >= 1)ed--,sufCnt++;
-    
     int res = n - preCnt;
     int ans = n - sufCnt;
     res = max(res,ans);

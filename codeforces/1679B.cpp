@@ -20,7 +20,7 @@ int main(){
         q[i] = c;
         sum += c;
     }
-    cout << sum << "--" << endl;
+    
     for(int i = 1;i <= m;i++){
         LL t,x,y;cin >> t >> x;
         if(t == 1){

@@ -20,11 +20,13 @@ void solve(){
     sort(q,q + n);
     for(int i = 0;i < n;i++){
         long long newX = q[i] * m;
+        if(mp[q[i]] == 0)continue;
         if(mp[newX]){
             mp[newX]--;  
         }else if(mp[q[i]]) {
             ans++;
         }
+        mp[q[i]]--;
     }
     cout << ans << endl;
 }

@@ -1,0 +1,21 @@
+访问地址：https://leetcode.cn/problems/largest-local-values-in-a-matrix/comments/
+思路：遍历
+
+class Solution {
+public:
+    vector<vector<int>> largestLocal(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>> res = vector(n - 2,vector<int>(n - 2,0));
+        for(int i = 0;i < n - 2;i++){
+            for(int j = 0;j < m - 2;j++){
+                for(int t = i;t <= i + 2;t++){
+                    for(int u = j;u <= j + 2;u++){
+                        res[i][j] = max(grid[t][u],res[i][j]);
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};

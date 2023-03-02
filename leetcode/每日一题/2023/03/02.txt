@@ -1,0 +1,23 @@
+访问地址：https://leetcode.cn/problems/bianry-number-to-string-lcci/
+思路：*2 取整
+
+class Solution {
+public:
+    string printBin(double num) {
+        string res = "0.";
+        int i = 0;
+        int ok = 0;
+        for(int i = 0;i < 31;i++){
+            int t = (int)(num * 2);
+            res = res + to_string(t);
+            num = num * 2 - t;
+            if(num == 0){
+                ok = 1;
+                break;
+            }
+        }
+        
+        if(ok)return res;
+        else return "ERROR";
+    }
+};

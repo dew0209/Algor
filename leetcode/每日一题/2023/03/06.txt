@@ -1,0 +1,21 @@
+访问地址：https://leetcode.cn/problems/minimum-deletions-to-make-string-balanced/
+思路：dp
+
+class Solution {
+public:
+    int minimumDeletions(string s) {
+        int n = s.size();
+        int count = 0;
+        int f[n + 10];
+        for(int i = 0;i < n + 2;i++)f[i] = 0;
+        for(int i = 1;i <= n;i++){
+           if(s[i - 1] == 'b'){
+               count++;
+               f[i] = f[i - 1];
+           }else {
+               f[i] = min(f[i - 1] + 1,count);
+           }
+        }
+        return f[n];
+    }
+};

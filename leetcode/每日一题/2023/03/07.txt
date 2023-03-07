@@ -1,0 +1,28 @@
+访问地址：https://leetcode.cn/problems/brace-expansion-ii/
+思路：dfs
+class Solution {
+public:
+
+    set<string> res;
+
+    vector<string> braceExpansionII(string s) {
+        int n = s.size();
+        dfs(s);
+        return vector<string>(res.begin(),res.end());
+    }
+    void dfs(string s){
+        int j = s.find_first_of('}');
+        if(j == string::npos){
+            res.insert(s);
+            return;
+        }
+        int i = s.rfind('{',j);
+        string a = s.substr(0,i);
+        string c = s.substr(j + 1);
+        stringstream ss(s.substr(i + 1,j - i - 1));
+        string b;
+        while (getline(ss, b, ',')) {
+            dfs(a + b + c);
+        }
+    }
+};

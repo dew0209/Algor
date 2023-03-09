@@ -1,0 +1,30 @@
+访问地址：https://leetcode.cn/problems/minimum-recolors-to-get-k-consecutive-black-blocks/
+思路：滑动窗口
+
+class Solution {
+public:
+    int minimumRecolors(string blocks, int k) {
+        int cnt[2];
+        int stack[220];
+        int hh = 0,tt = -1;
+        for(int i = 0;i < 2;i++)cnt[i] = 0;
+        int res = 200;
+        int n = blocks.size();
+        for(int i = 0;i < n;i++){
+            stack[++tt] = i;
+            if(hh <= tt && i - k >= hh){
+                if(blocks[stack[hh]] == 'W'){
+                    cnt[0]--;
+                }
+                hh++;
+            }
+            if(blocks[i] == 'W'){
+                    cnt[0]++;
+            }          
+            if(i - k + 1 >= 0){
+                res = min(res,cnt[0]);
+            }
+        }
+        return res;
+    }
+};

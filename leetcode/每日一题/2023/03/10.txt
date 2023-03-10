@@ -1,0 +1,26 @@
+访问地址：https://leetcode.cn/problems/make-sum-divisible-by-p/
+思路：前缀和
+
+class Solution {
+public:
+    int minSubarray(vector<int>& nums, int p) {
+        int n = nums.size();
+        int x = 0;
+        for(int i = 0;i < n;i++){
+            x = (x + nums[i]) % p;
+        }
+        if(x == 0)return 0;
+        unordered_map<int,int> cnt;
+        int res = 2e9;
+        int y = 0;
+        for(int i = 0;i < n;i++){
+            cnt[y] = i;
+            y = (y + nums[i]) % p;
+            if(cnt.count(((y - x) % p + p) % p) > 0){
+                res = min(res,i - cnt[((y - x) % p + p) % p] + 1);
+            }
+        }
+        if(res == nums.size())res = -1;
+        return res;
+    }
+};

@@ -1,5 +1,5 @@
 访问地址：https://leetcode.cn/problems/make-sum-divisible-by-p/
-思路：前缀和
+思路：前缀和 + 哈希表
 
 class Solution {
 public:

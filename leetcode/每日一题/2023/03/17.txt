@@ -1,0 +1,76 @@
+访问地址：https://leetcode.cn/problems/longest-subsequence-with-limited-sum/
+思路：排序
+
+class Solution {
+public:
+    vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
+        int n = nums.size();
+        int m = queries.size();
+        vector<int> res(m,0);
+        sort(nums.begin(),nums.end());
+        vector<pair<int,int>> cnt;
+        for(int i = 0;i < m;i++){
+            cnt.push_back({queries[i],i});
+        }
+        sort(cnt.begin(),cnt.end());
+        int sum = 0;
+        int tol = 0;
+        int j = 0;
+        for(int i = 0;i < n;){
+            if(sum + nums[i] > cnt[j].first){
+                res[cnt[j].second] = tol;
+                j++;
+                if(j >= m)break;
+            }else {
+                tol++;
+                sum += nums[i];
+                i++;
+            }
+        }
+        while(j < m){
+            res[cnt[j].second] = tol;
+            j++;
+        }
+        return res;
+    }
+};
+
+
+思路：二分
+
+class Solution {
+public:
+
+    int get_res(vector<int> ans,int u){
+        int l = 0;
+        int r = ans.size() - 1;
+        while(l < r){
+            int mid = l + r + 1 >> 1;
+            if(ans[mid] <= u){
+                l = mid;
+            }else {
+                r = mid - 1;
+            }
+        }
+        return l;
+    }
+
+    vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
+        vector<int> ans;
+        ans.push_back(0);
+        int q = 0;
+        int n = nums.size();
+        sort(nums.begin(),nums.end());
+        int m = queries.size();
+        for(int i = 0;i < n;i++){
+            q += nums[i];
+            ans.push_back(q);
+        }
+        vector<int> res;
+        for(int i = 0;i < m;i++){
+            int v = get_res(ans,queries[i]);
+            res.push_back(v);
+        }
+        return res;
+    }
+};

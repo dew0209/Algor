@@ -1,0 +1,52 @@
+访问地址：https://leetcode.cn/problems/split-two-strings-to-make-palindrome/
+思路：中心扩展
+
+class Solution {
+public:
+    bool checkPalindromeFormation(string a, string b) {
+        //中心扩展
+        int left = a.size() / 2 - 1;
+        left = min(get_res(a,a,left),get_res(b,b,left));
+        left = min(get_res(a,b,left),get_res(b,a,left));
+        return left == -1;
+    }
+
+    int get_res(string l,string r,int left){
+        int right = l.size() - left - 1;
+        while(left >= 0 && right <= l.size()){
+            if(l[left] != r[right])break;
+            left--;
+            right++;
+        }
+        return left;
+    }
+
+};
+
+思路：双指针
+class Solution {
+public:
+    bool checkPalindromeFormation(string a, string b) {
+        //双指针
+        return get_ans(a,b) || get_ans(b,a);
+    }
+    
+    int get_ans(string a,string b){
+        int left = 0,right = a.size() - 1;
+        while(left <= right && a[left] == b[right]){
+            left++;
+            right--;
+        }
+        if(left >= right)return 1;
+        return get_com(a,left,right) || get_com(b,left,right);
+    }
+
+    int get_com(string a,int l,int r){
+        while(l < r && a[l] == a[r]){
+            l++;
+            r--;
+        }
+        return l >= r;
+    }
+
+};

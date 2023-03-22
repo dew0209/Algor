@@ -1,0 +1,25 @@
+访问地址：https://leetcode.cn/problems/best-team-with-no-conflicts/
+思路：动态规划
+
+class Solution {
+public:
+    int bestTeamScore(vector<int>& scores, vector<int>& ages) {
+        int n = scores.size();
+        vector<pair<int,int>> cnt;
+        vector<int> f(n);
+        for(int i = 0;i < n;i++){
+            cnt.push_back({scores[i],ages[i]});
+        } 
+        sort(cnt.begin(),cnt.end());
+        int res = 0;
+        for(int i = 0;i < n;i++){
+            f[i] = cnt[i].first;
+            for(int j = 0;j < i;j++){
+                if(cnt[j].second > cnt[i].second && cnt[j].first < cnt[i].first)continue;
+                f[i] = max(f[j] + cnt[i].first,f[i]);
+            }
+            res = max(f[i],res);
+        }
+        return res;
+    }
+};

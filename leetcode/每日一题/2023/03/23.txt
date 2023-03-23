@@ -1,0 +1,47 @@
+访问地址：https://leetcode.cn/problems/arithmetic-subarrays/
+思路：枚举
+
+class Solution {
+public:
+    vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
+        int n = nums.size();
+        int m = l.size();
+        vector<bool> res;
+        for(int i = 0;i < m;i++){
+            int il = l[i];
+            int ir = r[i];
+            int mav = -1e5;
+            int miv = 1e5;
+            for(int j = il;j <= ir;j++){
+                mav = max(mav,nums[j]);
+                miv = min(miv,nums[j]);
+            }
+            if(mav == miv){
+                res.push_back(true);
+                continue;
+            }
+            if((mav - miv) % (ir - il) != 0){
+                res.push_back(false);
+                continue;
+            }
+            cout << mav << ' ' << miv << endl;
+            bool flag = true;
+            int d = (mav - miv) / (ir - il);
+            vector<int> tmp(ir - il + 1,0);
+            for(int j = il;j <= ir;j++){
+                if((nums[j] - miv) % d != 0){
+                    flag = false;
+                    break;
+                }
+                int v = (nums[j] - miv) / d;
+                if(tmp[v]){
+                    flag = false;
+                    break;
+                }
+                tmp[v] = 1;
+            }
+            res.push_back(flag);
+        }
+        return res;
+    }
+};

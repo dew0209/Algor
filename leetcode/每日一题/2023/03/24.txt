@@ -1,0 +1,44 @@
+访问地址：https://leetcode.cn/problems/stream-of-characters/
+思路：trie
+
+const int N = 400010;
+int son[N][26];
+int cnt[N];
+int idx;
+
+class StreamChecker {
+public:
+    string findStr;
+    
+    void insert(string& s){
+        int p = 0;
+        for (int i = 0; s[i]; i++){
+            int u = s[i] - 'a';
+            if (!son[p][u]) son[p][u] = ++ idx;
+            p = son[p][u];
+        }
+        cnt[p] ++;
+    }
+
+    StreamChecker(vector<string>& words) {
+        memset(son,0,sizeof son);
+        memset(cnt,0,sizeof cnt);
+        idx = 0;
+        for(auto& c : words){
+            reverse(c.begin(),c.end());
+            insert(c);
+        }
+    }
+
+    bool query(char letter) {
+        findStr += letter;
+        int p = 0;
+        for(int i = findStr.size() - 1;i >= 0;i--){
+            int u = findStr[i] - 'a';
+            if(!son[p][u])return false;
+            p = son[p][u];
+            if(cnt[p])return true;
+        }
+        return false;
+    }
+};

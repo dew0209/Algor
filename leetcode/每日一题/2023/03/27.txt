@@ -1,0 +1,31 @@
+访问地址：https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/
+思路：动态规划
+
+class Solution {
+public:
+    int countSubstrings(string s, string t) {
+        int n = s.size();
+        int m = t.size();
+        vector<vector<int>> f1(n + 10,vector<int>(m + 10,0));
+        vector<vector<int>> f2(n + 10,vector<int>(m + 10,0));
+        for(int i = 0;i < n;i++){
+            for(int j = 0;j < m;j++){
+                f1[i + 1][j + 1] = s[i] == t[j] ? (f1[i][j] + 1) : 0;
+            }
+        }
+        for(int i = n - 1;i >= 0;i--){
+            for(int j = m - 1;j >= 0;j--){
+                f2[i][j] = s[i] == t[j] ? (f2[i + 1][j + 1] + 1) : 0;
+            }
+        }
+        int res = 0;
+        for(int i = 0;i < n;i++){
+            for(int j = 0;j < m;j++){
+                if(s[i] != t[j]){
+                    res += (f1[i][j] + 1) * (f2[i + 1][j + 1] + 1);
+                }
+            }
+        }
+        return res;
+    }
+};

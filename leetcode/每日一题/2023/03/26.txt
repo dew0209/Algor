@@ -1,0 +1,17 @@
+访问地址：https://leetcode.cn/problems/find-subarrays-with-equal-sum/
+思路：哈希表
+
+class Solution {
+public:
+    bool findSubarrays(vector<int>& nums) {
+        unordered_map<int,int> cnt;
+        int n = nums.size();
+        for(int i = 0;i < n - 1;i++){
+            cnt[nums[i] + nums[i + 1]]++;
+        }
+        for(auto [key,value] : cnt){
+            if(value >= 2)return 1;
+        }
+        return 0;
+    }
+};

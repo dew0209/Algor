@@ -1,0 +1,15 @@
+访问地址：https://leetcode.cn/problems/number-of-common-factors/
+思路：暴力枚举
+
+class Solution {
+public:
+    int commonFactors(int a, int b) {
+        int res = 0;
+        for(int i = 1;i <= min(a,b);i++){
+            if(a % i == 0 && b % i == 0){
+                res++;
+            }
+        }
+        return res;
+    }
+};

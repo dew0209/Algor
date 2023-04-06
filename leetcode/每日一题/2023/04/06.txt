@@ -1,0 +1,26 @@
+访问地址：https://leetcode.cn/problems/convert-to-base-2/
+思路：模拟
+
+class Solution {
+public:
+    string baseNeg2(int n) {
+        // n = (-2) * b + c
+        // n - (-2) * b = c
+        //n - (-2) * b + 2 = c + 2;
+        //n - (-2) * (b + 1) = c + 2;//将-1转换为1
+        string res = "";
+        if(n == 0 || n == 1)return to_string(n);
+        while(n){
+            int re = n % -2;
+            if(re == -1){
+                n = n / -2 + 1;
+                re = 1;
+            }else {
+                n /= -2;
+            }
+            res += to_string(re);
+        }
+        reverse(res.begin(),res.end());
+        return res;
+    }
+};

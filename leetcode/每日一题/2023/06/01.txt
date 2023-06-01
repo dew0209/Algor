@@ -1,0 +1,29 @@
+访问地址：https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/
+思路：二分+贪心
+
+class Solution {
+public:
+    int maximumTastiness(vector<int>& price, int k) {
+        sort(price.begin(),price.end());
+        int n = price.size();
+        int l = 0,r = price[n - 1] - price[0];
+        while(l < r){
+            int mid = l + r + 1 >> 1;
+            if(check(mid,price,k)){
+                l = mid;
+            }else r = mid - 1;
+        }
+        return l;
+    }
+    bool check(int mid,vector<int>& price,int k){
+        int st = -1e9;
+        int cnt = 0;
+        for(int i = 0;i < price.size();i++){
+            if(price[i] - st >= mid){
+                cnt++;
+                st = price[i];
+            }
+        }
+        return cnt >= k;
+    }
+};

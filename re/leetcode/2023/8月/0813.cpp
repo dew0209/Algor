@@ -39,3 +39,21 @@ nums2:[2,5,6] 3
 1 2 3 0 0 0
     n - 1
 2 5 6
+
+
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int id = n + m - 1;
+        n--;
+        m--;
+        while(n >= 0){
+            while(m >= 0 && nums1[m] > nums2[n]){
+                swap(nums1[m--],nums1[id--]);
+            }
+
+            swap(nums1[id--],nums2[n--]);
+        }
+    }
+};

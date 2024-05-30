@@ -22,7 +22,7 @@ public:
             if(cnt[s[i] - 'a'].size() > 3){
                 cnt[s[i] - 'a'].pop_back();
             }
-            j = i - 1;
+            i = j - 1;
         }
         int res = -1;
         for(int i = 0;i < 26;i++){
@@ -31,8 +31,8 @@ public:
                 if(cnt[i][0] > 2){
                     res = max(cnt[i][0] - 2,res);
                 }
-                if(len > 1 && cnt[i][1] > 1){
-                    res = max(cnt[i][1] - 1,res);
+                if(len > 1 && cnt[i][0] > 1){
+                    res = max(min(cnt[i][0] - 1,cnt[i][1]),res);
                 }
                 if(len > 2){
                     res = max(cnt[i][2],res);

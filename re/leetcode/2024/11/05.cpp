@@ -1,21 +1,15 @@
-//题目链接：https://leetcode.cn/problems/sum-of-square-numbers/description/?envType=daily-question&envId=2024-11-04
+//题目链接：https://leetcode.cn/problems/find-the-winning-player-in-coin-game/description/?envType=daily-question&envId=2024-11-05
 
 class Solution {
 public:
-    bool judgeSquareSum(int c) {
-        int r = sqrt(c);
-        int l = 0;
+    string losingPlayer(int x, int y) {
+        int a = x;
+        int b = y / 4;
 
-        while(l <= r){
-            if(l * l == c - r * r){
-                return true;
-            }
-            if(l * l < c - r * r){
-                l++;
-            }else {
-                r--;
-            }
+        int mv = min(a,b);
+        if(mv % 2){
+            return "Alice";
         }
-        return false;
+        return "Bob";
     }
 };

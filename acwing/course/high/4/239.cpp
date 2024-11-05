@@ -16,6 +16,8 @@
         d[pa]相当于要改成1~pa的奇偶性和1~pb的奇偶性差的绝对值，也就是[pa + 1~pb]区间的奇偶性。
         d[a] ^ d[b] ^ d[pa] = t 为1~a 和1~b 的奇偶性差的绝对值
         d[pa] = t ^ d[a] ^ d[b]
+
+
 */
 
 #include <iostream>
